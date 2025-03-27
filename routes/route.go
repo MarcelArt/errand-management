@@ -63,6 +63,7 @@ func SetupRoutes(app *fiber.App) {
 	authMiddleware := middlewares.NewAuthMiddleware(repositories.NewUserRepo(database.GetDB()))
 
 	api := app.Group("/api")
-	api_routes.SetupUserRoutes(api, authMiddleware)
-	api_routes.SetupAuthorizedDeviceRoutes(api, authMiddleware)
+	// api_routes.SetupUserRoutes(api, authMiddleware)
+	// api_routes.SetupAuthorizedDeviceRoutes(api, authMiddleware)
+	api_routes.SetupCategoryRoutes(api, authMiddleware)
 }

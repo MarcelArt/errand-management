@@ -43,6 +43,7 @@ func MigrateDB() error {
 	err := db.AutoMigrate(
 		models.User{},
 		models.AuthorizedDevice{},
+		models.Category{},
 	)
 	fmt.Println("Database Migrated")
 
@@ -53,6 +54,7 @@ func DropDB() error {
 	err := db.Migrator().DropTable(
 		models.User{},
 		models.AuthorizedDevice{},
+		models.Category{},
 	)
 	fmt.Println("Database Droped")
 
