@@ -1,0 +1,9 @@
+package hello
+
+import "github.com/MarcelArt/ModelCraft/views/layout"
+
+templ Show(name string) {
+    @layout.Main() {
+        <p>Hello, {name}</p>
+    }
+}
