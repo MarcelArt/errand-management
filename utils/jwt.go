@@ -4,9 +4,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/MarcelArt/ModelCraft/config"
-	"github.com/MarcelArt/ModelCraft/enums"
-	"github.com/MarcelArt/ModelCraft/models"
+	"github.com/MarcelArt/errand-management/config"
+	"github.com/MarcelArt/errand-management/enums"
+	"github.com/MarcelArt/errand-management/models"
 	"github.com/golang-jwt/jwt/v5"
 )
 

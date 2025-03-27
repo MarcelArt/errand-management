@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/MarcelArt/ModelCraft/config"
-	"github.com/MarcelArt/ModelCraft/database"
-	"github.com/MarcelArt/ModelCraft/routes"
+	"github.com/MarcelArt/errand-management/config"
+	"github.com/MarcelArt/errand-management/database"
+	"github.com/MarcelArt/errand-management/routes"
 	"github.com/gofiber/fiber/v2"
 )
 

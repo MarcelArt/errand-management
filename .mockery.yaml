@@ -7,6 +7,6 @@ all: True
 resolve-type-alias: False
 issue-845-fix: True
 packages:
-  github.com/MarcelArt/ModelCraft:
+  github.com/MarcelArt/errand-management:
     config:
       recursive: True

@@ -1,11 +1,11 @@
 package api_routes
 
 import (
-	"github.com/MarcelArt/ModelCraft/database"
-	api_handlers "github.com/MarcelArt/ModelCraft/handlers/api"
-	"github.com/MarcelArt/ModelCraft/middlewares"
-	"github.com/MarcelArt/ModelCraft/repositories"
-	"github.com/MarcelArt/ModelCraft/services"
+	"github.com/MarcelArt/errand-management/database"
+	api_handlers "github.com/MarcelArt/errand-management/handlers/api"
+	"github.com/MarcelArt/errand-management/middlewares"
+	"github.com/MarcelArt/errand-management/repositories"
+	"github.com/MarcelArt/errand-management/services"
 	"github.com/gofiber/fiber/v2"
 )
 

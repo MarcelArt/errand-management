@@ -4,7 +4,7 @@
 1. Click "Use this template" on github
 2. Clone repository to your PC
 3. Refactor module name
-`github.com/MarcelArt/ModelCraft` to whatever module name you want
+`github.com/MarcelArt/errand-management` to whatever module name you want
 4. If there is any error on main.go run `make swag` to generate swagger documentation
 5. Create .env file based from example.env
 6. Try to run project by running command `make run`

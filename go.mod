@@ -1,4 +1,4 @@
-module github.com/MarcelArt/ModelCraft
+module github.com/MarcelArt/errand-management
 
 go 1.23
 

@@ -3,9 +3,9 @@ package middlewares
 import (
 	"strings"
 
-	"github.com/MarcelArt/ModelCraft/models"
-	"github.com/MarcelArt/ModelCraft/repositories"
-	"github.com/MarcelArt/ModelCraft/utils"
+	"github.com/MarcelArt/errand-management/models"
+	"github.com/MarcelArt/errand-management/repositories"
+	"github.com/MarcelArt/errand-management/utils"
 	"github.com/gofiber/fiber/v2"
 )
 

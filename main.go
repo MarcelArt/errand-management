@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/MarcelArt/ModelCraft/cmd"
-	_ "github.com/MarcelArt/ModelCraft/docs"
+	"github.com/MarcelArt/errand-management/cmd"
+	_ "github.com/MarcelArt/errand-management/docs"
 )
 
 // @title Fiber Example API

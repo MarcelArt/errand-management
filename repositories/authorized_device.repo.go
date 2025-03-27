@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"github.com/MarcelArt/ModelCraft/models"
+	"github.com/MarcelArt/errand-management/models"
 	"gorm.io/gorm"
 )
 

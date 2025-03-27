@@ -4,13 +4,13 @@ import (
 	"log"
 	"strconv"
 
-	"github.com/MarcelArt/ModelCraft/database"
-	"github.com/MarcelArt/ModelCraft/models"
-	"github.com/MarcelArt/ModelCraft/repositories"
-	"github.com/MarcelArt/ModelCraft/scaffold"
-	"github.com/MarcelArt/ModelCraft/utils"
-	"github.com/MarcelArt/ModelCraft/views/components"
-	"github.com/MarcelArt/ModelCraft/views/dev_tools"
+	"github.com/MarcelArt/errand-management/database"
+	"github.com/MarcelArt/errand-management/models"
+	"github.com/MarcelArt/errand-management/repositories"
+	"github.com/MarcelArt/errand-management/scaffold"
+	"github.com/MarcelArt/errand-management/utils"
+	"github.com/MarcelArt/errand-management/views/components"
+	"github.com/MarcelArt/errand-management/views/dev_tools"
 	"github.com/gofiber/fiber/v2"
 )
 
