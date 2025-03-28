@@ -25,3 +25,5 @@ test:
 
 mock:
 	@mockery
+
+# cd ./tmp/ && vim build-errors.log && cd ..
