@@ -45,6 +45,7 @@ func MigrateDB() error {
 		models.AuthorizedDevice{},
 		models.Category{},
 		models.Task{},
+		models.Member{},
 	)
 	fmt.Println("Database Migrated")
 
@@ -57,6 +58,7 @@ func DropDB() error {
 		models.AuthorizedDevice{},
 		models.Category{},
 		models.Task{},
+		models.Member{},
 	)
 	fmt.Println("Database Droped")
 
