@@ -34,6 +34,9 @@ function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValu
 	return (
 		<div className="m-4">
 			<h1 className="text-2xl mx-2 my-4">Category</h1>
+			<Button className="mx-2 my-4 bg-violet-600 text-white hover:bg-violet-800">
+				Create
+			</Button>
 			<div className="rounded-md border">
 				<Table>
 					<TableHeader>
