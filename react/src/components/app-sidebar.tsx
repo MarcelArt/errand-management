@@ -19,8 +19,8 @@ const items = [
 		icon: Home,
 	},
 	{
-		title: 'Edit',
-		url: '/edit',
+		title: 'Category',
+		url: '/categories',
 		icon: Settings,
 	},
 ];
