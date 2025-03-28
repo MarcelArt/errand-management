@@ -70,4 +70,5 @@ func SetupRoutes(app *fiber.App) {
 	api_routes.SetupMemberRoutes(api, authMiddleware)
 	api_routes.SetupSettingRoutes(api, authMiddleware)
 	api_routes.SetupMemberCategoryPriorityRoutes(api, authMiddleware)
+	api_routes.SetupRoadmapRoutes(api, authMiddleware)
 }
