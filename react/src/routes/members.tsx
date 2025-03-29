@@ -1,4 +1,3 @@
-import categoryApi from '@/api/category.api';
 import memberApi from '@/api/member.api';
 import CreateMemberModal from '@/components/create-member-modal';
 import DataTable from '@/components/data-table';
@@ -6,6 +5,7 @@ import DeleteConfirmModal from '@/components/delete-confirm-modal';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Separator } from '@/components/ui/separator';
+import UpdateMemberModal from '@/components/update-member-modal';
 import { DropdownMenuLabel } from '@radix-ui/react-dropdown-menu';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router'
@@ -62,7 +62,7 @@ const columns: ColumnDef<MemberPage>[] = [
 						onConfirm={() => mutate()}
 						setOpen={setIsDeleteOpen}
 					/>
-					{/* <UpdateCategoryModal isOpen={isUpdateOpen} setOpen={setIsUpdateOpen} data={category} /> */}
+					<UpdateMemberModal isOpen={isUpdateOpen} setOpen={setIsUpdateOpen} data={member} />
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
 							<Button variant="ghost" className="h-8 w-8 p-0">
