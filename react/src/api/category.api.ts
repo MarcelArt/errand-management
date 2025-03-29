@@ -15,10 +15,16 @@ async function remove(id: number): Promise<JsonResponse<Category>> {
 	return response.data;
 }
 
+async function update(id: number, input: CategoryDto): Promise<JsonResponse<CategoryDto>> {
+	const response = await api.put(`/category/${id}`, input);
+	return response.data;
+}
+
 const categoryApi = {
 	create,
 	read,
 	remove,
+	update,
 };
 
 export default categoryApi;

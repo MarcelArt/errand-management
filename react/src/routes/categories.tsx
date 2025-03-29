@@ -17,6 +17,7 @@ import CreateCategoryModal from '@/components/create-category-modal';
 import DeleteConfirmModal from '@/components/delete-confirm-modal';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import UpdateCategoryModal from '@/components/update-category-modal';
 
 export const Route = createFileRoute('/categories')({
 	component: RouteComponent,
@@ -102,6 +103,7 @@ const columns: ColumnDef<Category>[] = [
 			const queryClient = useQueryClient();
 
 			const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+			const [isUpdateOpen, setIsUpdateOpen] = useState(false);
 
 			const { mutate } = useMutation({
 				mutationFn: () => categoryApi.remove(category.ID),
@@ -120,6 +122,7 @@ const columns: ColumnDef<Category>[] = [
 						onConfirm={() => mutate()}
 						setOpen={setIsDeleteOpen}
 					/>
+					<UpdateCategoryModal isOpen={isUpdateOpen} setOpen={setIsUpdateOpen} data={category} />
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
 							<Button variant="ghost" className="h-8 w-8 p-0">
@@ -130,7 +133,7 @@ const columns: ColumnDef<Category>[] = [
 						<DropdownMenuContent align="end">
 							<DropdownMenuLabel>Actions</DropdownMenuLabel>
 							<DropdownMenuSeparator />
-							<DropdownMenuItem onClick={() => console.log('category.id :>> ', category.ID)}>Update</DropdownMenuItem>
+							<DropdownMenuItem onClick={() => setIsUpdateOpen(true)}>Update</DropdownMenuItem>
 							<DropdownMenuItem className="bg-destructive" onClick={() => setIsDeleteOpen(true)}>
 								Delete
 							</DropdownMenuItem>
