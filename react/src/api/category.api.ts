@@ -20,11 +20,22 @@ async function update(id: number, input: CategoryDto): Promise<JsonResponse<Cate
 	return response.data;
 }
 
+async function dropdown(): Promise<Category[]> {
+	const count = await api.get('/category?size=1');
+	const firstData = count.data as Page<Category>;
+	
+	const all = await api.get(`/category?size=${firstData.total}`);
+	const allData = all.data as Page<Category>;
+
+	return allData.items;
+}
+
 const categoryApi = {
 	create,
 	read,
 	remove,
 	update,
+	dropdown,
 };
 
 export default categoryApi;

@@ -1,4 +1,5 @@
 import taskApi from '@/api/task.api';
+import CreateTaskModal from '@/components/create-task-modal';
 import DataTable from '@/components/data-table';
 import DeleteConfirmModal from '@/components/delete-confirm-modal';
 import { Button } from '@/components/ui/button';
@@ -137,7 +138,7 @@ function RouteComponent() {
 			header={
 				<>
 					<h1 className="text-2xl mx-2 my-1">Category</h1>
-					{/* <CreateMemberModal /> */}
+					<CreateTaskModal />
 					<Separator className="mb-4" />
 				</>
 			}
