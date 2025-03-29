@@ -7,9 +7,8 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { createFileRoute } from '@tanstack/react-router';
-import { flexRender, getCoreRowModel, getPaginationRowModel, useReactTable, type ColumnDef } from '@tanstack/react-table';
+import { type ColumnDef } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import categoryApi from '@/api/category.api';
@@ -18,73 +17,12 @@ import DeleteConfirmModal from '@/components/delete-confirm-modal';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import UpdateCategoryModal from '@/components/update-category-modal';
+import DataTable from '@/components/data-table';
+import { Separator } from '@/components/ui/separator';
 
 export const Route = createFileRoute('/categories')({
 	component: RouteComponent,
 });
-
-interface DataTableProps<TData, TValue> {
-	columns: ColumnDef<TData, TValue>[];
-	data: TData[];
-}
-
-function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
-	const table = useReactTable({
-		data,
-		columns,
-		getCoreRowModel: getCoreRowModel(),
-		getPaginationRowModel: getPaginationRowModel(),
-	});
-
-	return (
-		<div className="m-4">
-			<h1 className="text-2xl mx-2 my-4">Category</h1>
-			<CreateCategoryModal />
-			<div className="rounded-md border">
-				<Table>
-					<TableHeader>
-						{table.getHeaderGroups().map((headerGroup) => (
-							<TableRow key={headerGroup.id}>
-								{headerGroup.headers.map((header) => {
-									return (
-										<TableHead key={header.id}>
-											{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-										</TableHead>
-									);
-								})}
-							</TableRow>
-						))}
-					</TableHeader>
-					<TableBody>
-						{table.getRowModel().rows?.length ? (
-							table.getRowModel().rows.map((row) => (
-								<TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
-									{row.getVisibleCells().map((cell) => (
-										<TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
-									))}
-								</TableRow>
-							))
-						) : (
-							<TableRow>
-								<TableCell colSpan={columns.length} className="h-24 text-center">
-									No results.
-								</TableCell>
-							</TableRow>
-						)}
-					</TableBody>
-				</Table>
-			</div>
-			<div className="flex items-center justify-end space-x-2 py-4">
-				<Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
-					Previous
-				</Button>
-				<Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
-					Next
-				</Button>
-			</div>
-		</div>
-	);
-}
 
 const columns: ColumnDef<Category>[] = [
 	{
@@ -110,7 +48,7 @@ const columns: ColumnDef<Category>[] = [
 				onSuccess: () => {
 					toast('Category has been deleted.');
 					queryClient.invalidateQueries({ queryKey: ['categories'] });
-				}
+				},
 			});
 
 			return (
@@ -151,5 +89,19 @@ function RouteComponent() {
 		queryFn: () => categoryApi.read(),
 	});
 
-	return isPending ? <div>Loading...</div> : <DataTable columns={columns} data={data?.items ?? ([] as Category[])} />;
+	return isPending ? (
+		<div>Loading...</div>
+	) : (
+		<DataTable
+			columns={columns}
+			data={data?.items ?? ([] as Category[])}
+			header={
+				<>
+					<h1 className="text-2xl mx-2 my-1">Category</h1>
+					<CreateCategoryModal />
+					<Separator className='mb-4'/>
+				</>
+			}
+		/>
+	);
 }
