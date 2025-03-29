@@ -84,9 +84,11 @@ const columns: ColumnDef<Category>[] = [
 ];
 
 function RouteComponent() {
+	const [page, setPage] = useState(0);
+
 	const { data, isPending } = useQuery({
-		queryKey: ['categories', 0],
-		queryFn: () => categoryApi.read(),
+		queryKey: ['categories', page],
+		queryFn: () => categoryApi.read(page),
 	});
 
 	return isPending ? (
@@ -95,6 +97,12 @@ function RouteComponent() {
 		<DataTable
 			columns={columns}
 			data={data?.items ?? ([] as Category[])}
+			meta={{
+				first: data?.first ?? true,
+				last: data?.last ?? true,
+			}}
+			onNextPage={() => setPage(page + 1)}
+			onPreviousPage={() => setPage(page - 1)}
 			header={
 				<>
 					<h1 className="text-2xl mx-2 my-1">Category</h1>

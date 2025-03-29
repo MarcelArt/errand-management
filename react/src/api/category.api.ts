@@ -1,7 +1,7 @@
 import api from '.';
 
-async function read(): Promise<Page<Category>> {
-	const response = await api.get('/category');
+async function read(page: number): Promise<Page<Category>> {
+	const response = await api.get(`/category?page=${page}`);
 	return response.data;
 }
 
