@@ -5,6 +5,7 @@ import AppSidebar from '@/components/app-sidebar';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { ThemeProvider } from '@/components/theme-provider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from '@/components/ui/sonner';
 
 const queryClient = new QueryClient();
 export const Route = createRootRoute({
@@ -18,7 +19,7 @@ export const Route = createRootRoute({
 						<Outlet />
 					</main>
 				</SidebarProvider>
-
+				<Toaster />
 				<TanStackRouterDevtools />
 			</ThemeProvider>
 		</QueryClientProvider>

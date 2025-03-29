@@ -13,6 +13,7 @@ import { flexRender, getCoreRowModel, getPaginationRowModel, useReactTable, type
 import { MoreHorizontal } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import categoryApi from '@/api/category.api';
+import CreateCategoryModal from '@/components/create-category-modal';
 
 export const Route = createFileRoute('/categories')({
 	component: RouteComponent,
@@ -34,9 +35,7 @@ function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValu
 	return (
 		<div className="m-4">
 			<h1 className="text-2xl mx-2 my-4">Category</h1>
-			<Button className="mx-2 my-4 bg-violet-600 text-white hover:bg-violet-800">
-				Create
-			</Button>
+			<CreateCategoryModal />
 			<div className="rounded-md border">
 				<Table>
 					<TableHeader>
