@@ -46,10 +46,10 @@ const columns: ColumnDef<MemberPage>[] = [
 			const [isUpdateOpen, setIsUpdateOpen] = useState(false);
 
 			const { mutate } = useMutation({
-				// mutationFn: () => categoryApi.remove(category.ID),
+				mutationFn: () => memberApi.remove(member.ID),
 				onSuccess: () => {
-					toast('Category has been deleted.');
-					queryClient.invalidateQueries({ queryKey: ['categories'] });
+					toast('Member has been deleted.');
+					queryClient.invalidateQueries({ queryKey: ['members'] });
 				},
 			});
 

@@ -5,7 +5,7 @@ import (
 	"gorm.io/gorm"
 )
 
-const memberPageQuery = "select * from members"
+const memberPageQuery = "select * from members where deleted_at is null"
 
 type IMemberRepo interface {
 	IBaseCrudRepo[models.Member, models.MemberDTO, models.MemberPage]
