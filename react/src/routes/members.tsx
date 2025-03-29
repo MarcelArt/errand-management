@@ -1,5 +1,6 @@
 import categoryApi from '@/api/category.api';
 import memberApi from '@/api/member.api';
+import CreateMemberModal from '@/components/create-member-modal';
 import DataTable from '@/components/data-table';
 import DeleteConfirmModal from '@/components/delete-confirm-modal';
 import { Button } from '@/components/ui/button';
@@ -107,7 +108,7 @@ function RouteComponent() {
 			header={
 				<>
 					<h1 className="text-2xl mx-2 my-1">Category</h1>
-					{/* <CreateCategoryModal /> */}
+					<CreateMemberModal />
 					<Separator className='mb-4'/>
 				</>
 			}
