@@ -1,4 +1,4 @@
-import { Home, Settings } from 'lucide-react';
+import { Home, Settings, Users } from 'lucide-react';
 
 import {
 	Sidebar,
@@ -22,6 +22,11 @@ const items = [
 		title: 'Category',
 		url: '/categories',
 		icon: Settings,
+	},
+	{
+		title: 'Member',
+		url: '/members',
+		icon: Users,
 	},
 ];
 

@@ -11,11 +11,18 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as MembersImport } from './routes/members'
 import { Route as EditImport } from './routes/edit'
 import { Route as CategoriesImport } from './routes/categories'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const MembersRoute = MembersImport.update({
+  id: '/members',
+  path: '/members',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const EditRoute = EditImport.update({
   id: '/edit',
@@ -60,6 +67,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditImport
       parentRoute: typeof rootRoute
     }
+    '/members': {
+      id: '/members'
+      path: '/members'
+      fullPath: '/members'
+      preLoaderRoute: typeof MembersImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -69,12 +83,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
   '/edit': typeof EditRoute
+  '/members': typeof MembersRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
   '/edit': typeof EditRoute
+  '/members': typeof MembersRoute
 }
 
 export interface FileRoutesById {
@@ -82,14 +98,15 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
   '/edit': typeof EditRoute
+  '/members': typeof MembersRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/categories' | '/edit'
+  fullPaths: '/' | '/categories' | '/edit' | '/members'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/categories' | '/edit'
-  id: '__root__' | '/' | '/categories' | '/edit'
+  to: '/' | '/categories' | '/edit' | '/members'
+  id: '__root__' | '/' | '/categories' | '/edit' | '/members'
   fileRoutesById: FileRoutesById
 }
 
@@ -97,12 +114,14 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CategoriesRoute: typeof CategoriesRoute
   EditRoute: typeof EditRoute
+  MembersRoute: typeof MembersRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CategoriesRoute: CategoriesRoute,
   EditRoute: EditRoute,
+  MembersRoute: MembersRoute,
 }
 
 export const routeTree = rootRoute
@@ -117,7 +136,8 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/categories",
-        "/edit"
+        "/edit",
+        "/members"
       ]
     },
     "/": {
@@ -128,6 +148,9 @@ export const routeTree = rootRoute
     },
     "/edit": {
       "filePath": "edit.tsx"
+    },
+    "/members": {
+      "filePath": "members.tsx"
     }
   }
 }
