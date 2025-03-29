@@ -24,7 +24,7 @@ type Task struct {
 type TaskDTO struct {
 	DTO
 	Priority     uint      `gorm:"default:5" json:"priority"`
-	Name         uint      `gorm:"not null" json:"name"`
+	Name         string    `gorm:"not null" json:"name"`
 	Eta          float64   `gorm:"not null" json:"eta"`
 	RemainingEta float64   `gorm:"not null" json:"remainingEta"`
 	IsAvailable  bool      `gorm:"not null" json:"isAvailable"`
@@ -35,7 +35,7 @@ type TaskDTO struct {
 type TaskPage struct {
 	ID           uint      `gorm:"primarykey"`
 	Priority     uint      `gorm:"default:5" json:"priority"`
-	Name         uint      `gorm:"not null" json:"name"`
+	Name         string    `gorm:"not null" json:"name"`
 	Eta          float64   `gorm:"not null" json:"eta"`
 	RemainingEta float64   `gorm:"not null" json:"remainingEta"`
 	IsAvailable  bool      `gorm:"not null" json:"isAvailable"`
