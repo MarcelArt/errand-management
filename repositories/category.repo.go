@@ -5,7 +5,7 @@ import (
 	"gorm.io/gorm"
 )
 
-const categoryPageQuery = "select * from categories"
+const categoryPageQuery = "select * from categories where deleted_at is null"
 
 type ICategoryRepo interface {
 	IBaseCrudRepo[models.Category, models.CategoryDTO, models.CategoryPage]

@@ -10,9 +10,15 @@ async function create(input: CategoryDto): Promise<JsonResponse<CreateResponse>>
 	return response.data;
 }
 
+async function remove(id: number): Promise<JsonResponse<Category>> {
+	const response = await api.delete(`/category/${id}`);
+	return response.data;
+}
+
 const categoryApi = {
 	create,
 	read,
+	remove,
 };
 
 export default categoryApi;

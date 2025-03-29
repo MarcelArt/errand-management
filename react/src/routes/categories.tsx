@@ -11,9 +11,12 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { createFileRoute } from '@tanstack/react-router';
 import { flexRender, getCoreRowModel, getPaginationRowModel, useReactTable, type ColumnDef } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import categoryApi from '@/api/category.api';
 import CreateCategoryModal from '@/components/create-category-modal';
+import DeleteConfirmModal from '@/components/delete-confirm-modal';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 export const Route = createFileRoute('/categories')({
 	component: RouteComponent,
@@ -96,10 +99,29 @@ const columns: ColumnDef<Category>[] = [
 		cell: ({ row }) => {
 			const category = row.original;
 
+			const queryClient = useQueryClient();
+
+			const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+
+			const { mutate } = useMutation({
+				mutationFn: () => categoryApi.remove(category.ID),
+				onSuccess: () => {
+					toast('Category has been deleted.');
+					queryClient.invalidateQueries({ queryKey: ['categories'] });
+				}
+			});
+
 			return (
 				<div className="text-right">
+					<DeleteConfirmModal
+						isOpen={isDeleteOpen}
+						title="Are you absolutely sure?"
+						description="This action cannot be undone."
+						onConfirm={() => mutate()}
+						setOpen={setIsDeleteOpen}
+					/>
 					<DropdownMenu>
-						<DropdownMenuTrigger asChild className="">
+						<DropdownMenuTrigger asChild>
 							<Button variant="ghost" className="h-8 w-8 p-0">
 								<span className="sr-only">Open menu</span>
 								<MoreHorizontal className="h-4 w-4" />
@@ -109,7 +131,7 @@ const columns: ColumnDef<Category>[] = [
 							<DropdownMenuLabel>Actions</DropdownMenuLabel>
 							<DropdownMenuSeparator />
 							<DropdownMenuItem onClick={() => console.log('category.id :>> ', category.ID)}>Update</DropdownMenuItem>
-							<DropdownMenuItem className="bg-destructive" onClick={() => console.log('category.id :>> ', category.ID)}>
+							<DropdownMenuItem className="bg-destructive" onClick={() => setIsDeleteOpen(true)}>
 								Delete
 							</DropdownMenuItem>
 						</DropdownMenuContent>
@@ -126,5 +148,5 @@ function RouteComponent() {
 		queryFn: () => categoryApi.read(),
 	});
 
-	return isPending ? <div>Loading...</div> : <DataTable columns={columns} data={data?.items!} />;
+	return isPending ? <div>Loading...</div> : <DataTable columns={columns} data={data?.items ?? ([] as Category[])} />;
 }
