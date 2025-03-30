@@ -12,6 +12,7 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Separator } from '@/components/ui/separator';
+import UpdateTaskModal from '@/components/update-task-modal';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 import type { ColumnDef } from '@tanstack/react-table';
@@ -92,7 +93,7 @@ const columns: ColumnDef<TaskPage>[] = [
 						onConfirm={() => mutate()}
 						setOpen={setIsDeleteOpen}
 					/>
-					{/* <UpdateMemberModal isOpen={isUpdateOpen} setOpen={setIsUpdateOpen} data={task} /> */}
+					<UpdateTaskModal isOpen={isUpdateOpen} setOpen={setIsUpdateOpen} data={task} />
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
 							<Button variant="ghost" className="h-8 w-8 p-0">
