@@ -11,6 +11,7 @@ const taskPageQuery = `
 		c.value category
 	from tasks t 
 	join categories c on t.category_id = c.id
+	where t.deleted_at is null
 `
 
 type ITaskRepo interface {
