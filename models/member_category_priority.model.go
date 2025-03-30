@@ -32,6 +32,15 @@ type MemberCategoryPriorityPage struct {
 	Member     string `json:"member"`
 }
 
+type MemberWithCategoryPriority struct {
+	ID         uint   `json:"ID"`
+	MemberID   uint   `json:"memberId"`
+	Name       string `json:"name"`
+	CategoryID uint   `json:"categoryId"`
+	Category   string `json:"category"`
+	Priority   int    `json:"priority"`
+}
+
 func (MemberCategoryPriorityDTO) TableName() string {
 	return memberCategoryPriorityTableName
 }

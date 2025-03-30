@@ -1,4 +1,3 @@
-
 package api_handlers
 
 import (
@@ -16,7 +15,7 @@ type MemberHandler struct {
 func NewMemberHandler(repo repositories.IMemberRepo) *MemberHandler {
 	return &MemberHandler{
 		BaseCrudHandler: BaseCrudHandler[models.Member, models.MemberDTO, models.MemberPage]{
-			repo: repo,
+			repo:      repo,
 			validator: validator.New(validator.WithRequiredStructEnabled()),
 		},
 		repo: repo,
@@ -101,4 +100,21 @@ func (h *MemberHandler) Delete(c *fiber.Ctx) error {
 // @Router /member/{id} [get]
 func (h *MemberHandler) GetByID(c *fiber.Ctx) error {
 	return h.BaseCrudHandler.GetByID(c)
+}
+
+// Read retrieves a list of member's category priorities
+// @Summary Get a list of member's category priorities
+// @Description Get a list of member's category priorities
+// @Tags Member
+// @Accept json
+// @Produce json
+// @Param page query int false "Page"
+// @Param size query int false "Size"
+// @Param sort query string false "Sort"
+// @Param filters query string false "Filter"
+// @Success 200 {array} models.MemberWithCategoryPriority
+// @Router /member/priorities [get]
+func (h *MemberHandler) WithCategoryPriorities(c *fiber.Ctx) error {
+	page := h.repo.WithCategoryPriorities(c)
+	return c.Status(fiber.StatusOK).JSON(page)
 }

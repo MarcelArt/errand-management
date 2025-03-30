@@ -13,6 +13,7 @@ func SetupMemberRoutes(api fiber.Router, auth *middlewares.AuthMiddleware) {
 
 	g := api.Group("/member")
 	g.Get("/", h.Read)
+	g.Get("/priorities", h.WithCategoryPriorities)
 	g.Get("/:id", h.GetByID)
 	g.Post("/", h.Create)
 	g.Put("/:id", h.Update)
