@@ -21,6 +21,7 @@ interface UpdateTaskModalProps {
 export default function UpdateTaskModal({ setOpen, isOpen, data }: UpdateTaskModalProps) {
 	const [categoryId, setCategoryId] = useState(data.categoryId);
 	const [eta, setEta] = useState(data.eta);
+	const [remainingEta, setRemainingEta] = useState(data.remainingEta);
 	const [isAvailable, setIsAvailable] = useState(data.isAvailable);
 	const [name, setName] = useState(data.name);
 	const [priority, setPriority] = useState(data.priority);
@@ -59,6 +60,12 @@ export default function UpdateTaskModal({ setOpen, isOpen, data }: UpdateTaskMod
 								ETA (hours)
 							</Label>
 							<Input id="eta" value={eta} className="col-span-3" onChange={(e) => setEta(+e.target.value)} />
+						</div>
+						<div className="grid grid-cols-4 items-center gap-4">
+							<Label htmlFor="remainingEta" className="text-left">
+								Remaining ETA (hours)
+							</Label>
+							<Input id="remainingEta" value={remainingEta} className="col-span-3" onChange={(e) => setRemainingEta(+e.target.value)} />
 						</div>
 						<div className="grid grid-cols-4 items-center gap-4">
 							<Label htmlFor="priority" className="text-right">
