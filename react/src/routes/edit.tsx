@@ -1,3 +1,4 @@
+import PendingTable from '@/components/pending-table'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/edit')({
@@ -5,5 +6,5 @@ export const Route = createFileRoute('/edit')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/edit"!</div>
+  return <PendingTable />
 }

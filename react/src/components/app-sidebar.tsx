@@ -1,4 +1,4 @@
-import { Home, ListTodo, Settings, Users } from 'lucide-react';
+import { FlaskConical, Home, ListTodo, Settings, Users } from 'lucide-react';
 
 import {
 	Sidebar,
@@ -32,6 +32,11 @@ const items = [
 		title: 'Task',
 		url: '/tasks',
 		icon: ListTodo,
+	},
+	{
+		title: 'Test UI',
+		url: '/edit',
+		icon: FlaskConical,
 	},
 ];
 
