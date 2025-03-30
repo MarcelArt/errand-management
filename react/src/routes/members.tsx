@@ -113,7 +113,7 @@ function RouteComponent() {
 			onPreviousPage={() => setPage(page - 1)}
 			header={
 				<>
-					<h1 className="text-2xl mx-2 my-1">Category</h1>
+					<h1 className="text-2xl mx-2 my-1">Member</h1>
 					<CreateMemberModal />
 					<Separator className="mb-4" />
 				</>
