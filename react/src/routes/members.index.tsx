@@ -14,13 +14,13 @@ import { Separator } from '@/components/ui/separator';
 import UpdateMemberModal from '@/components/update-member-modal';
 import { DropdownMenuLabel } from '@radix-ui/react-dropdown-menu';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import type { ColumnDef } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
-export const Route = createFileRoute('/members')({
+export const Route = createFileRoute('/members/')({
 	component: RouteComponent,
 });
 
@@ -77,6 +77,14 @@ const columns: ColumnDef<MemberPage>[] = [
 							</Button>
 						</DropdownMenuTrigger>
 						<DropdownMenuContent align="end">
+							<DropdownMenuLabel>Configure</DropdownMenuLabel>
+							<DropdownMenuSeparator />
+							<DropdownMenuItem>
+								<Link to={`/members/$id/priorities`} params={{ id: member.ID.toString() }}>
+									Priorities
+								</Link>
+							</DropdownMenuItem>
+							<DropdownMenuSeparator />
 							<DropdownMenuLabel>Actions</DropdownMenuLabel>
 							<DropdownMenuSeparator />
 							<DropdownMenuItem onClick={() => setIsUpdateOpen(true)}>Update</DropdownMenuItem>

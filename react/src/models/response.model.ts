@@ -4,6 +4,6 @@ type JsonResponse<T> = {
     message: string;
 }
 
-type CreateResponse = {
+interface CreateResponse {
     ID: number;
 }

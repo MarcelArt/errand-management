@@ -20,11 +20,27 @@ async function update(id: number, input: MemberDto): Promise<JsonResponse<Member
 	return response.data;
 }
 
+async function getWithCategoryPriorities(memberId: number, page: number): Promise<Page<MemberWithCategoryPriority>> {
+	const filters = `["member_id", ${memberId}]`;
+	const query = `filters=${filters}&page=${page}`;
+
+	const response = await api.get(`/member/priorities?${query}`);
+
+	return response.data;
+}
+
+async function getById(id: number): Promise<JsonResponse<MemberPage>> {
+	const response = await api.get(`/member/${id}`);
+	return response.data;
+}
+
 const memberApi = {
 	create,
 	read,
 	remove,
 	update,
+	getWithCategoryPriorities,
+	getById,
 };
 
 export default memberApi;

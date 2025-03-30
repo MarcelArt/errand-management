@@ -12,22 +12,17 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as TasksImport } from './routes/tasks'
-import { Route as MembersImport } from './routes/members'
 import { Route as EditImport } from './routes/edit'
 import { Route as CategoriesImport } from './routes/categories'
 import { Route as IndexImport } from './routes/index'
+import { Route as MembersIndexImport } from './routes/members.index'
+import { Route as MembersIdPrioritiesImport } from './routes/members.$id.priorities'
 
 // Create/Update Routes
 
 const TasksRoute = TasksImport.update({
   id: '/tasks',
   path: '/tasks',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const MembersRoute = MembersImport.update({
-  id: '/members',
-  path: '/members',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,6 +41,18 @@ const CategoriesRoute = CategoriesImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MembersIndexRoute = MembersIndexImport.update({
+  id: '/members/',
+  path: '/members/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MembersIdPrioritiesRoute = MembersIdPrioritiesImport.update({
+  id: '/members/$id/priorities',
+  path: '/members/$id/priorities',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -74,18 +81,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditImport
       parentRoute: typeof rootRoute
     }
-    '/members': {
-      id: '/members'
-      path: '/members'
-      fullPath: '/members'
-      preLoaderRoute: typeof MembersImport
-      parentRoute: typeof rootRoute
-    }
     '/tasks': {
       id: '/tasks'
       path: '/tasks'
       fullPath: '/tasks'
       preLoaderRoute: typeof TasksImport
+      parentRoute: typeof rootRoute
+    }
+    '/members/': {
+      id: '/members/'
+      path: '/members'
+      fullPath: '/members'
+      preLoaderRoute: typeof MembersIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/members/$id/priorities': {
+      id: '/members/$id/priorities'
+      path: '/members/$id/priorities'
+      fullPath: '/members/$id/priorities'
+      preLoaderRoute: typeof MembersIdPrioritiesImport
       parentRoute: typeof rootRoute
     }
   }
@@ -97,16 +111,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
   '/edit': typeof EditRoute
-  '/members': typeof MembersRoute
   '/tasks': typeof TasksRoute
+  '/members': typeof MembersIndexRoute
+  '/members/$id/priorities': typeof MembersIdPrioritiesRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
   '/edit': typeof EditRoute
-  '/members': typeof MembersRoute
   '/tasks': typeof TasksRoute
+  '/members': typeof MembersIndexRoute
+  '/members/$id/priorities': typeof MembersIdPrioritiesRoute
 }
 
 export interface FileRoutesById {
@@ -114,16 +130,36 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/categories': typeof CategoriesRoute
   '/edit': typeof EditRoute
-  '/members': typeof MembersRoute
   '/tasks': typeof TasksRoute
+  '/members/': typeof MembersIndexRoute
+  '/members/$id/priorities': typeof MembersIdPrioritiesRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/categories' | '/edit' | '/members' | '/tasks'
+  fullPaths:
+    | '/'
+    | '/categories'
+    | '/edit'
+    | '/tasks'
+    | '/members'
+    | '/members/$id/priorities'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/categories' | '/edit' | '/members' | '/tasks'
-  id: '__root__' | '/' | '/categories' | '/edit' | '/members' | '/tasks'
+  to:
+    | '/'
+    | '/categories'
+    | '/edit'
+    | '/tasks'
+    | '/members'
+    | '/members/$id/priorities'
+  id:
+    | '__root__'
+    | '/'
+    | '/categories'
+    | '/edit'
+    | '/tasks'
+    | '/members/'
+    | '/members/$id/priorities'
   fileRoutesById: FileRoutesById
 }
 
@@ -131,16 +167,18 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CategoriesRoute: typeof CategoriesRoute
   EditRoute: typeof EditRoute
-  MembersRoute: typeof MembersRoute
   TasksRoute: typeof TasksRoute
+  MembersIndexRoute: typeof MembersIndexRoute
+  MembersIdPrioritiesRoute: typeof MembersIdPrioritiesRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CategoriesRoute: CategoriesRoute,
   EditRoute: EditRoute,
-  MembersRoute: MembersRoute,
   TasksRoute: TasksRoute,
+  MembersIndexRoute: MembersIndexRoute,
+  MembersIdPrioritiesRoute: MembersIdPrioritiesRoute,
 }
 
 export const routeTree = rootRoute
@@ -156,8 +194,9 @@ export const routeTree = rootRoute
         "/",
         "/categories",
         "/edit",
-        "/members",
-        "/tasks"
+        "/tasks",
+        "/members/",
+        "/members/$id/priorities"
       ]
     },
     "/": {
@@ -169,11 +208,14 @@ export const routeTree = rootRoute
     "/edit": {
       "filePath": "edit.tsx"
     },
-    "/members": {
-      "filePath": "members.tsx"
-    },
     "/tasks": {
       "filePath": "tasks.tsx"
+    },
+    "/members/": {
+      "filePath": "members.index.tsx"
+    },
+    "/members/$id/priorities": {
+      "filePath": "members.$id.priorities.tsx"
     }
   }
 }
